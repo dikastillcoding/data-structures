@@ -1,3 +1,3 @@
 # Data Structures
 
-Just a ugly code of Data Structures implementation, written in C++
+just a ugly code of data structures implementation, written in C++
