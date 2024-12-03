@@ -3,36 +3,32 @@
 using namespace std;
 
 struct HashNode {
-  int       key;
-  int       value;
-  HashNode* next;
+  int key;
+  int value;
+  HashNode *next;
 };
 
 struct HashMap {
-  HashNode** table;
-  int        capacity;
+  HashNode **table;
+  int capacity;
 };
 
-HashNode* createHashNode(int key, int value) {
-  HashNode* newNode = new HashNode;
-  newNode->key      = key;
-  newNode->value    = value;
-  newNode->next     = NULL;
+HashNode *createHashNode(int key, int value) {
+  HashNode *newNode = new HashNode;
+  newNode->key = key;
+  newNode->value = value;
+  newNode->next = NULL;
   return newNode;
 }
 
-void deleteHashNode(HashNode* node) {
-  delete node;
-}
+void deleteHashNode(HashNode *node) { delete node; }
 
-int hashFunction(int key, int capacity) {
-  return key % capacity;
-}
+int hashFunction(int key, int capacity) { return key % capacity; }
 
-HashMap* createHashMap(int size) {
-  HashMap* hashMap  = new HashMap;
+HashMap *createHashMap(int size) {
+  HashMap *hashMap = new HashMap;
   hashMap->capacity = size;
-  hashMap->table    = new HashNode*[size];
+  hashMap->table = new HashNode *[size];
 
   for (int i = 0; i < size; i++) {
     hashMap->table[i] = NULL;
@@ -41,13 +37,13 @@ HashMap* createHashMap(int size) {
   return hashMap;
 }
 
-void insertData(HashMap* hashMap, int key, int value) {
-  int       hashIndex = hashFunction(key, hashMap->capacity);
-  HashNode* prev      = NULL;
-  HashNode* entry     = hashMap->table[hashIndex];
+void insertData(HashMap *hashMap, int key, int value) {
+  int hashIndex = hashFunction(key, hashMap->capacity);
+  HashNode *prev = NULL;
+  HashNode *entry = hashMap->table[hashIndex];
 
   while (entry != NULL && entry->key != key) {
-    prev  = entry;
+    prev = entry;
     entry = entry->next;
   }
 
@@ -65,9 +61,9 @@ void insertData(HashMap* hashMap, int key, int value) {
   entry->value = value;
 }
 
-int searchData(HashMap* hashMap, int key) {
-  int       hashIndex = hashFunction(key, hashMap->capacity);
-  HashNode* entry     = hashMap->table[hashIndex];
+int searchData(HashMap *hashMap, int key) {
+  int hashIndex = hashFunction(key, hashMap->capacity);
+  HashNode *entry = hashMap->table[hashIndex];
 
   while (entry != NULL) {
     if (entry->key == key) {
@@ -80,13 +76,13 @@ int searchData(HashMap* hashMap, int key) {
   return -1;
 }
 
-void removeData(HashMap* hashMap, int key) {
-  int       hashIndex = hashFunction(key, hashMap->capacity);
-  HashNode* entry     = hashMap->table[hashIndex];
-  HashNode* prev      = NULL;
+void removeData(HashMap *hashMap, int key) {
+  int hashIndex = hashFunction(key, hashMap->capacity);
+  HashNode *entry = hashMap->table[hashIndex];
+  HashNode *prev = NULL;
 
   while (entry != NULL && entry->key != key) {
-    prev  = entry;
+    prev = entry;
     entry = entry->next;
   }
 
@@ -105,13 +101,13 @@ void removeData(HashMap* hashMap, int key) {
   deleteHashNode(entry);
 }
 
-void deleteHashMap(HashMap* hashMap) {
+void deleteHashMap(HashMap *hashMap) {
   for (int i = 0; i < hashMap->capacity; i++) {
-    HashNode* entry = hashMap->table[i];
+    HashNode *entry = hashMap->table[i];
 
     while (entry != NULL) {
-      HashNode* prev = entry;
-      entry          = entry->next;
+      HashNode *prev = entry;
+      entry = entry->next;
       delete prev;
     }
   }
@@ -121,7 +117,7 @@ void deleteHashMap(HashMap* hashMap) {
 }
 
 int main() {
-  HashMap* hashTable = createHashMap(10);
+  HashMap *hashTable = createHashMap(10);
 
   insertData(hashTable, 1, 10);
   insertData(hashTable, 2, 20);

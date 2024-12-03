@@ -3,37 +3,33 @@
 using namespace std;
 
 struct Node {
-  int   data;
-  Node* next;
+  int data;
+  Node *next;
 };
 
-void createEmptyStack(Node** top) {
-  *top = NULL;
-}
+void createEmptyStack(Node **top) { *top = NULL; }
 
-bool isEmpty(Node* top) {
-  return top == NULL;
-}
+bool isEmpty(Node *top) { return top == NULL; }
 
-void Push(Node** top, int data) {
-  Node* newNode = new Node;
+void Push(Node **top, int data) {
+  Node *newNode = new Node;
   newNode->data = data;
   newNode->next = *top;
-  *top          = newNode;
+  *top = newNode;
 }
 
-void Pop(Node** top, int* data) {
+void Pop(Node **top, int *x) {
   if (!isEmpty(*top)) {
-    Node* temp = *top;
-    *data      = temp->data;
-    *top       = temp->next;
+    Node *temp = *top;
+    *x = temp->data;
+    *top = temp->next;
     delete temp;
   }
 }
 
 int main(void) {
-  Node* top;
-  int   data;
+  Node *top;
+  int x;
 
   createEmptyStack(&top);
 
@@ -44,7 +40,7 @@ int main(void) {
   Push(&top, 5);
 
   while (!isEmpty(top)) {
-    Pop(&top, &data);
-    cout << data << endl;
+    Pop(&top, &x);
+    cout << x << endl;
   }
 }

@@ -3,65 +3,65 @@
 using namespace std;
 
 struct Node {
-  int   data;
-  Node* prev;
-  Node* next;
+  int data;
+  Node *prev;
+  Node *next;
 };
 
-void insertFirst(Node** head, int data) {
-  Node* newNode = new Node;
+void insertFirst(Node **head, int data) {
+  Node *newNode = new Node;
   newNode->data = data;
 
   if (*head == NULL) {
     newNode->next = newNode;
     newNode->prev = newNode;
-    *head         = newNode;
+    *head = newNode;
     return;
   }
 
-  Node* lastNode = (*head)->prev;
-  newNode->next  = *head;
-  newNode->prev  = lastNode;
+  Node *lastNode = (*head)->prev;
+  newNode->next = *head;
+  newNode->prev = lastNode;
   lastNode->next = newNode;
-  (*head)->prev  = newNode;
-  *head          = newNode;
+  (*head)->prev = newNode;
+  *head = newNode;
 }
 
-void insertLast(Node** head, int data) {
-  Node* newNode = new Node;
+void insertLast(Node **head, int data) {
+  Node *newNode = new Node;
   newNode->data = data;
 
   if (*head == NULL) {
     newNode->next = newNode;
     newNode->prev = newNode;
-    *head         = newNode;
+    *head = newNode;
     return;
   }
 
-  Node* lastNode = (*head)->prev;
-  newNode->next  = *head;
-  newNode->prev  = lastNode;
+  Node *lastNode = (*head)->prev;
+  newNode->next = *head;
+  newNode->prev = lastNode;
   lastNode->next = newNode;
-  (*head)->prev  = newNode;
+  (*head)->prev = newNode;
 }
 
-void insertAfter(Node* head, int x, int data) {
+void insertAfter(Node *head, int x, int data) {
   if (head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* newNode = new Node;
+  Node *newNode = new Node;
   newNode->data = data;
 
-  Node* targetNode = head;
+  Node *targetNode = head;
 
   do {
     if (targetNode->data == x) {
-      newNode->next          = targetNode->next;
-      newNode->prev          = targetNode;
+      newNode->next = targetNode->next;
+      newNode->prev = targetNode;
       targetNode->next->prev = newNode;
-      targetNode->next       = newNode;
+      targetNode->next = newNode;
       return;
     }
 
@@ -72,14 +72,14 @@ void insertAfter(Node* head, int x, int data) {
   delete newNode;
 }
 
-void printAllNode(Node* head) {
+void printAllNode(Node *head) {
   if (head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* currentNode = head;
-  int   i           = 1;
+  Node *currentNode = head;
+  int i = 1;
 
   do {
     cout << "Node (" << i << "): " << currentNode->data << endl;
@@ -88,13 +88,13 @@ void printAllNode(Node* head) {
   } while (currentNode != head);
 }
 
-void deleteFirst(Node** head) {
+void deleteFirst(Node **head) {
   if (*head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* temp = *head;
+  Node *temp = *head;
 
   if (temp->next == temp) {
     *head = NULL;
@@ -102,21 +102,21 @@ void deleteFirst(Node** head) {
     return;
   }
 
-  Node* lastNode = temp->prev;
-  *head          = temp->next;
-  (*head)->prev  = lastNode;
+  Node *lastNode = temp->prev;
+  *head = temp->next;
+  (*head)->prev = lastNode;
   lastNode->next = *head;
 
   delete temp;
 }
 
-void deleteLast(Node** head) {
+void deleteLast(Node **head) {
   if (*head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* lastNode = (*head)->prev;
+  Node *lastNode = (*head)->prev;
 
   if (lastNode->next == lastNode) {
     *head = NULL;
@@ -124,24 +124,24 @@ void deleteLast(Node** head) {
     return;
   }
 
-  Node* prevNodeBeforeLastNode = lastNode->prev;
+  Node *prevNodeBeforeLastNode = lastNode->prev;
   prevNodeBeforeLastNode->next = *head;
-  (*head)->prev                = prevNodeBeforeLastNode;
+  (*head)->prev = prevNodeBeforeLastNode;
 
   delete lastNode;
 }
 
-void deleteAfter(Node** head, int x) {
+void deleteAfter(Node **head, int x) {
   if (*head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* targetNode = *head;
+  Node *targetNode = *head;
 
   do {
     if (targetNode->data == x) {
-      Node* temp = targetNode->next;
+      Node *temp = targetNode->next;
 
       targetNode->next = temp->next;
       temp->next->prev = targetNode;
@@ -160,7 +160,7 @@ void deleteAfter(Node** head, int x) {
 }
 
 int main(void) {
-  Node* head = NULL;
+  Node *head = NULL;
 
   cout << "Four insertFirst operations." << endl;
   insertFirst(&head, 1);

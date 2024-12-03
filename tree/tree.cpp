@@ -3,21 +3,21 @@
 using namespace std;
 
 struct Node {
-  int   data;
-  Node* left;
-  Node* right;
+  int data;
+  Node *left;
+  Node *right;
 };
 
-Node* createNode(int data) {
-  Node* newNode  = new Node;
-  newNode->data  = data;
-  newNode->left  = NULL;
+Node *createNode(int data) {
+  Node *newNode = new Node;
+  newNode->data = data;
+  newNode->left = NULL;
   newNode->right = NULL;
 
   return newNode;
 }
 
-void insertNode(Node* root, int data) {
+void insertNode(Node *root, int data) {
   if (root->data > data) {
     if (root->left != NULL) {
       insertNode(root->left, data);
@@ -36,7 +36,7 @@ void insertNode(Node* root, int data) {
   root->right = createNode(data);
 }
 
-void preOrder(Node* root) {
+void preOrder(Node *root) {
   if (root == NULL) {
     return;
   }
@@ -46,7 +46,7 @@ void preOrder(Node* root) {
   preOrder(root->right);
 }
 
-void inOrder(Node* root) {
+void inOrder(Node *root) {
   if (root == NULL) {
     return;
   }
@@ -56,7 +56,7 @@ void inOrder(Node* root) {
   inOrder(root->right);
 }
 
-void postOrder(Node* root) {
+void postOrder(Node *root) {
   if (root == NULL) {
     return;
   }
@@ -66,7 +66,7 @@ void postOrder(Node* root) {
   cout << root->data << " ";
 }
 
-bool searchTree(Node* root, int data) {
+bool searchTree(Node *root, int data) {
   if (root == NULL) {
     return false;
   }
@@ -82,7 +82,7 @@ bool searchTree(Node* root, int data) {
   return searchTree(root->right, data);
 }
 
-bool searchLeaf(Node* root, int data) {
+bool searchLeaf(Node *root, int data) {
   if (root == NULL) {
     return false;
   }
@@ -94,7 +94,7 @@ bool searchLeaf(Node* root, int data) {
   return searchLeaf(root->left, data) || searchLeaf(root->right, data);
 }
 
-void insertAfter(Node* root, int x, int y, bool isLeft) {
+void insertAfter(Node *root, int x, int y, bool isLeft) {
   if (root == NULL) {
     return;
   }
@@ -113,20 +113,20 @@ void insertAfter(Node* root, int x, int y, bool isLeft) {
   insertAfter(root->right, x, y, isLeft);
 }
 
-void deleteNode(Node* root, int x) {
+void deleteNode(Node *root, int x) {
   if (root == NULL) {
     return;
   }
 
   if (root->left != NULL && root->left->data == x) {
-    Node* temp = root->left;
+    Node *temp = root->left;
     root->left = NULL;
     delete temp;
     return;
   }
 
   if (root->right != NULL && root->right->data == x) {
-    Node* temp  = root->right;
+    Node *temp = root->right;
     root->right = NULL;
     delete temp;
     return;
@@ -137,7 +137,7 @@ void deleteNode(Node* root, int x) {
 }
 
 int main() {
-  Node* root = createNode(10);
+  Node *root = createNode(10);
 
   insertNode(root, 5);
   insertNode(root, 20);

@@ -3,19 +3,19 @@
 using namespace std;
 
 struct Node {
-  int   data;
-  Node* next;
+  int data;
+  Node *next;
 };
 
-void insertFirst(Node** head, int data) {
-  Node* newNode = new Node;
+void insertFirst(Node **head, int data) {
+  Node *newNode = new Node;
   newNode->data = data;
   newNode->next = *head;
-  *head         = newNode;
+  *head = newNode;
 }
 
-void insertLast(Node** head, int data) {
-  Node* newNode = new Node;
+void insertLast(Node **head, int data) {
+  Node *newNode = new Node;
   newNode->data = data;
   newNode->next = NULL;
 
@@ -24,7 +24,7 @@ void insertLast(Node** head, int data) {
     return;
   }
 
-  Node* lastNode = *head;
+  Node *lastNode = *head;
 
   while (lastNode->next != NULL) {
     lastNode = lastNode->next;
@@ -33,16 +33,16 @@ void insertLast(Node** head, int data) {
   lastNode->next = newNode;
 }
 
-void insertAfter(Node* head, int x, int data) {
+void insertAfter(Node *head, int x, int data) {
   if (head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* newNode = new Node;
+  Node *newNode = new Node;
   newNode->data = data;
 
-  Node* targetNode = head;
+  Node *targetNode = head;
 
   while (targetNode != NULL && targetNode->data != x) {
     targetNode = targetNode->next;
@@ -53,18 +53,18 @@ void insertAfter(Node* head, int x, int data) {
     return;
   }
 
-  newNode->next    = targetNode->next;
+  newNode->next = targetNode->next;
   targetNode->next = newNode;
 }
 
-void printAllNode(Node* head) {
+void printAllNode(Node *head) {
   if (head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* currentNode = head;
-  int   i           = 1;
+  Node *currentNode = head;
+  int i = 1;
 
   while (currentNode != NULL) {
     cout << "Node (" << i << "): " << currentNode->data << endl;
@@ -73,42 +73,42 @@ void printAllNode(Node* head) {
   }
 }
 
-void deleteFirst(Node** head) {
+void deleteFirst(Node **head) {
   if (*head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* temp = *head;
-  *head      = temp->next;
+  Node *temp = *head;
+  *head = temp->next;
   delete temp;
 }
 
-void deleteLast(Node** head) {
+void deleteLast(Node **head) {
   if (*head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* lastNode               = *head;
-  Node* prevNodeBeforeLastNode = NULL;
+  Node *lastNode = *head;
+  Node *prevNodeBeforeLastNode = NULL;
 
   while (lastNode->next != NULL) {
     prevNodeBeforeLastNode = lastNode;
-    lastNode               = lastNode->next;
+    lastNode = lastNode->next;
   }
 
   prevNodeBeforeLastNode->next = NULL;
   delete lastNode;
 }
 
-void deleteAfter(Node* head, int x) {
+void deleteAfter(Node *head, int x) {
   if (head == NULL) {
     cout << "List is still empty." << endl;
     return;
   }
 
-  Node* targetNode = head;
+  Node *targetNode = head;
 
   while (targetNode != NULL && targetNode->data != x) {
     targetNode = targetNode->next;
@@ -119,13 +119,13 @@ void deleteAfter(Node* head, int x) {
     return;
   }
 
-  Node* temp       = targetNode->next;
+  Node *temp = targetNode->next;
   targetNode->next = temp->next;
   delete temp;
 }
 
 int main(void) {
-  Node* head = NULL;
+  Node *head = NULL;
 
   cout << "Four insertFirst operations." << endl;
   insertFirst(&head, 1);
